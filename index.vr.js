@@ -16,17 +16,17 @@ export default class Basics extends Component {
     super()
 
     this.state = {
-      showSign: true
+      flexDirectionIsRow: true
     }
 
-    setInterval(() => this.setState({ showSign: !this.state.showSign }), 1000)
+    setInterval(() => this.setState({ flexDirectionIsRow: !this.state.flexDirectionIsRow }), 5000)
   }
 
   render() {
-    let message = this.state.showSign === true ? 'Welcome to VR land' : ' '
+    let flexDirection = this.state.flexDirectionIsRow ? 'row' : 'column'
 
     return (
-      <View style={styles.container}>
+      <View style={[styles.container, {flexDirection: flexDirection }]}>
         <Pano source={asset('starry-sky.jpg')}></Pano>
         <Row color='red'/>
         <Row color='blue'/>
@@ -49,7 +49,7 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     width: 2,
-    flexDirection: 'row',
+    alignItems: 'center',
     transform: [{translate: [-1, 0, -3]}]
   }
 })
